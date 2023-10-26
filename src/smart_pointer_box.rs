@@ -23,7 +23,7 @@ impl<T> Deref for MyBox<T> {
 #[derive(Debug)]
 enum List {
     Cons(i32, Box<List>),
-    Nil
+    Nil,
 }
 
 pub fn test_box() {
@@ -40,11 +40,14 @@ pub fn test_box() {
         because Box allow us to store a pointer to something stored on the heap, that's why the compiler
         knows the size when compiling.
     */
-    let _list = List::Cons(1, Box::new(List::Cons(2, Box::new(List::Cons(1, Box::new(List::Nil))))));
+    let _list = List::Cons(
+        1,
+        Box::new(List::Cons(2, Box::new(List::Cons(1, Box::new(List::Nil))))),
+    );
 
     let x = 5;
     let y = MyBox::new(x);
-    let z= Box::new(x);
+    let z = Box::new(x);
 
     assert_eq!(5, x);
     assert_eq!(5, *y);
@@ -77,7 +80,7 @@ impl Controller for Xbox {
 
 pub enum ConsoleType {
     Ps5,
-    Xbox
+    Xbox,
 }
 
 /*
@@ -87,12 +90,8 @@ pub enum ConsoleType {
 
 fn run(option: &ConsoleType) -> Box<dyn Controller> {
     match option {
-        ConsoleType::Ps5 => {
-            Box::new(Ps5)
-        },
-        ConsoleType::Xbox => {
-            Box::new(Xbox)
-        }
+        ConsoleType::Ps5 => Box::new(Ps5),
+        ConsoleType::Xbox => Box::new(Xbox),
     }
 }
 pub fn start_console() -> () {
@@ -103,4 +102,3 @@ pub fn start_console() -> () {
     xbox.press("DOW");
     ()
 }
-
