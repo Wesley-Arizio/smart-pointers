@@ -9,12 +9,14 @@
 */
 
 mod smart_pointer_box;
+mod smart_pointer_rc;
 
-use smart_pointer_box::{
-    test_box,
-    start_console,
-};
+use smart_pointer_box::{start_console, test_box};
+use smart_pointer_rc::{multiple_dbs, test_rc};
+
 fn main() {
     test_box();
     start_console();
+    test_rc();
+    multiple_dbs()
 }
