@@ -10,13 +10,16 @@
 
 mod smart_pointer_box;
 mod smart_pointer_rc;
+mod smart_pointer_rc_refcell;
 
 use smart_pointer_box::{start_console, test_box};
 use smart_pointer_rc::{multiple_dbs, test_rc};
+use smart_pointer_rc_refcell::test_rc_refcell;
 
 fn main() {
     test_box();
     start_console();
     test_rc();
-    multiple_dbs()
+    multiple_dbs();
+    test_rc_refcell();
 }
